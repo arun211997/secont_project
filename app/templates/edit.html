@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            background-color: rgb(150, 106, 191);
+        }
+
+        h2 {
+            color: rgb(130, 177, 171);
+            text-align: center;
+            font-size: 25px;
+        }
+
+        form {
+            height: 100%;
+            width: 400px;
+        }
+
+        .a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .p {
+            background-color: rgb(15, 60, 39);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 700px;
+            flex-direction: column;
+            border-radius: 20px;
+        }
+
+        input {
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            margin-top: 4px;
+            width: 80%;
+            height: 30px;
+        }
+
+        label {
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(216, 223, 222);
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        button {
+            height: 35px;
+            width: 75px;
+            font-weight: bold;
+            font-size: medium;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body style="background-color: rgb(10, 10, 49);">
+
+    <div calss="container">
+        <div class="a">
+            <form action="/editfun/{{pro.pk}}" method="post" enctype="multipart/form-data">
+                <div class="p">
+                    {% csrf_token %}
+                    <h2>Update Products</h2>
+                    <label for="">Product Name</label>
+                    <input type="text" name="name" value="{{ pro.productname }}">><br>
+                    <label for="">Price</label>
+                    <input type="number" name="price" value="{{ pro.price }}">><br>
+                    <label for="">Quantity</label>
+                    <input type="number" name="quantity" value="{{ pro.quantity }}">><br>
+                    <label for="">Image</label>
+                    {% if p.image %}
+                    <img src="{{ pro.image.url }}" style="height: 100px;"><br>
+                    {% endif %}
+                    <input type="file" name="file" style="background-color: aliceblue;" accept="image/*" value="{{ pro.image }}"><br>
+                    <button type="submit"
+                        style="color: rgb(3, 19, 33); background-color: aquamarine;">Update</button><br>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
